@@ -1,31 +1,18 @@
 import PySimpleGUI as sg
-import parsecsv
-
-waste = {
-    "temp": 0.0,
-    "DO": 0.0,
-    "pH": 0.0,   
-    "conductivity": 0.0,
-    "BOD": 0.0,
-    "nitrate_n_nitrite": 0.0,
-    "fecal_coliform": 0.0
-}
-
-def set_waste(attribute, input_str):
-    waste[attribute] = float(input_str)
+from parsecsv import set_waste, show_waste
 
 # Input window
 input_size = (40, 1)
 
 input_column = [
     [sg.Text("User Manual Inputs", font=("Helvetica", 30))],
-    [sg.Text("Enter Average Temperature Value:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average pH Level:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average Value of Dissolved Oxygen:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average Conductivity Level:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average Biochemical Oxygen Demand:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average Value of Nitrate-n and Nitrite-n:", size=input_size), sg.InputText(), sg.Button('Edit')],
-    [sg.Text("Enter Average Fecal Coliform:", size=input_size), sg.InputText(), sg.Button('Edit')],
+    [sg.Text("Enter Average Temperature Value:", size=input_size), sg.InputText(key='temperature'), sg.Button('Edit')],
+    [sg.Text("Enter Average pH Level:", size=input_size), sg.InputText(key='pH'), sg.Button('Edit')],
+    [sg.Text("Enter Average Value of Dissolved Oxygen:", size=input_size), sg.InputText(key='oxygen'), sg.Button('Edit')],
+    [sg.Text("Enter Average Conductivity Level:", size=input_size), sg.InputText(key='conductivity'), sg.Button('Edit')],
+    [sg.Text("Enter Average Biochemical Oxygen Demand:", size=input_size), sg.InputText(key='biochemical'), sg.Button('Edit')],
+    [sg.Text("Enter Average Value of Nitrate-n and Nitrite-n:", size=input_size), sg.InputText(key='nitrate_n'), sg.Button('Edit')],
+    [sg.Text("Enter Average Fecal Coliform:", size=input_size), sg.InputText(key='coliform'), sg.Button('Edit')],
     [sg.Button('Submit')],
 ]
 
@@ -49,19 +36,26 @@ while True:
         input_window.close()
         quit()
     elif event == temperature:
-        print("temperature")
+        set_waste("temp", values['temperature'])
+        show_waste("temp")
     elif event == pH:
-        print("pH")
+        set_waste("pH", values['pH'])
+        show_waste("pH")
     elif event == oxygen:
-        print("oxygen")
+        set_waste("DO", values['oxygen'])
+        show_waste("DO")
     elif event == conductivity:
-        print("conductivity")
+        set_waste("conductivity", values['conductivity'])
+        show_waste("conductivity")
     elif event == biochemical:
-        print("biochemical")
+        set_waste("BOD", values['biochemical'])
+        show_waste("BOD")
     elif event == nitrate:
-        print("nitrate and nitrite")
+        set_waste("nitrate_n_nitrite", values['nitrate_n'])
+        show_waste("nitrate_n_nitrite")
     elif event == coliform:
-        print("coliform")
+        set_waste("fecal_coliform", values['coliform'])
+        show_waste("fecal_coliform")
     elif event == submit:
         print("submitted")
         break

@@ -1,6 +1,22 @@
 import os
 import csv
 
+waste = {
+    "temp": 0.0,
+    "DO": 0.0,
+    "pH": 0.0,   
+    "conductivity": 0.0,
+    "BOD": 0.0,
+    "nitrate_n_nitrite": 0.0,
+    "fecal_coliform": 0.0
+}
+
+def set_waste(attribute, input_str):
+    global waste
+    waste[attribute] = float(input_str)
+
+def show_waste(attribute):
+    print(waste[attribute])
 
 list_info = []
 
