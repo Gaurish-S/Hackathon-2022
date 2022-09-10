@@ -17,18 +17,18 @@ def parse_lake_data():
     }
     with open(filename, 'r') as csv_file:
         reader = csv.reader(csv_file)
-        i = 2
+        i = -1
         for row in reader:
             list_info[i] = {
-                "temp": row[4], 
-                "DO" : row[5],
-                "pH" : row[6],
-                "conductivity" : row[7],
-                "BOD" : row[8],
-                "nitrate_n_nitrite": row[9],
-                "fecal_coliform" : row[10], 
-                "location" : row[2],
-                "state" : row[3]
+                "temp": row[3], 
+                "DO" : row[4],
+                "pH" : row[5],
+                "conductivity" : row[6],
+                "BOD" : row[7],
+                "nitrate_n_nitrite": row[8],
+                "fecal_coliform" : row[9], 
+                "location" : row[1],
+                "state" : row[2]
             }
             i+=1
     print (list_info)
