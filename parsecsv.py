@@ -1,10 +1,7 @@
 import os
 import csv
 
-def parse_lake_data():
-    dirname = os.path.dirname(__file__)
-    filename = os.path.join(dirname, 'waterquality.csv')
-    list_info = {
+list_info = {
         "temp":0.0,
         "DO" : 0.0,
         "pH" : 0.0,
@@ -15,6 +12,11 @@ def parse_lake_data():
         "location" : "null",
         "state" : "null"
     }
+
+def parse_lake_data():
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, 'waterquality.csv')
+    
     with open(filename, 'r') as csv_file:
         reader = csv.reader(csv_file)
         i = -1
@@ -31,6 +33,6 @@ def parse_lake_data():
                 "state" : row[2]
             }
             i+=1
-
+    print(list_info)
 if __name__ == "__main__":
     parse_lake_data()
