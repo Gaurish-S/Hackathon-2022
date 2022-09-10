@@ -18,6 +18,6 @@ Each team will follow UN Sustainability goal 6, as well as a technology that the
 Participants are free to choose or develop technologies they want to incorporate into their digital roadmap/strategy however some potential technologies are given.
 
 Some  possible technologies you can use are:
-Artificial Intelligence (AI)
-Advanced Analytics
-Data Visualisation (Tableau)
+- Artificial Intelligence (AI)
+- Advanced Analytics
+- Data Visualisation (Tableau)
