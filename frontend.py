@@ -66,7 +66,7 @@ button_size = (30, 1)
 
 data_column = [
     [sg.Text("River data informations", font=("Helvetica", 30))],
-    [sg.Button("Sort by Average Temperature", size=button_size), 
+    [sg.Button("Sort by Average Temperature", size=button_size,), 
      sg.Button("Sort by Average pH", size=button_size),
      sg.Button("Sort by Average Value of Dissolved Oxygen", size=button_size),
      sg.Button("Sort by Average Conductivity Level", size=button_size), 
@@ -79,6 +79,7 @@ data_column = [
 
 
 # Get data from backend, update table
+# TODO: automate table generation based on given data (table array)
 def create_table():
     table_layout = [
         [
@@ -93,6 +94,7 @@ def create_table():
                 'Fecal Coliform'],
                 values=[['1', '2', '3', '4', '5', '6', '7', '8']],
                 justification='center',
+                col_widths=[25, 25, 25, 25, 25, 25, 25, 25], auto_size_columns=False,
             )
         ]
     ]
