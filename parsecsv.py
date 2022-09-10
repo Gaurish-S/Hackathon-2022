@@ -2,17 +2,17 @@
 
 import csv
 
-def waste_input():
-    waste = {
-        "temp": 0.0,
-        "DO": 0.0,
-        "pH": 0.0,   
-        "conductivity": 0,
-        "BOD": 0.0,
-        "nitrate_n_nitrite": 0.0,
-        "fecal_coliform": 0
-    }
+waste = {
+    "temp": 0.0,
+    "DO": 0.0,
+    "pH": 0.0,   
+    "conductivity": 0,
+    "BOD": 0.0,
+    "nitrate_n_nitrite": 0.0,
+    "fecal_coliform": 0
+}
 
+def waste_input():
     waste["temp"] = float(input("Enter temperature: "))
     waste["DO"] = float(input("Enter dissolved oxygen (mg/l): "))
     waste["pH"] = float(input("Enter pH: "))
