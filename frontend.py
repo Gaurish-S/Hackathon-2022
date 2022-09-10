@@ -1,9 +1,12 @@
 import PySimpleGUI as sg
+import parsecsv
+
+
+# Input window
 input_size = (40, 1)
 
-
 input_column = [
-    [sg.Text("User Manual Inputs")],
+    [sg.Text("User Manual Inputs", font=("Helvetica", 30))],
     [sg.Text("Enter Average Temperature Value:", size=input_size), sg.InputText(), sg.Button('Edit')],
     [sg.Text("Enter Average pH Level:", size=input_size), sg.InputText(), sg.Button('Edit')],
     [sg.Text("Enter Average Value of Dissolved Oxygen:", size=input_size), sg.InputText(), sg.Button('Edit')],
@@ -53,15 +56,25 @@ while True:
 
 input_window.close()
 
+
+# Data Window
+button_size = (30, 1)
+
 data_column = [
-
-
+    [sg.Text("River data informations", font=("Helvetica", 30))],
+    [sg.Button("Sort by Average Temperature", size=button_size), 
+     sg.Button("Sort by Average pH", size=button_size),
+     sg.Button("Sort by Average Value of Dissolved Oxygen", size=button_size),
+     sg.Button("Sort by Average Conductivity Level", size=button_size), 
+     sg.Button("Sort by Average Biochemical Oxygen Demand", size=button_size), 
+     sg.Button("Sort by Average Nitrate-n and Nitrite-n Values", size=button_size), 
+     sg.Button("Sort by Average Fecal Coliform", size=button_size)]
 ]
 
 data_layout = [data_column]
 
 
-data_window = sg.Window("Zui\'s River Scouting Application")
+data_window = sg.Window("Zui\'s River Scouting Application", data_layout, element_justification='c')
 
 while True:
     event, values = data_window.read()
