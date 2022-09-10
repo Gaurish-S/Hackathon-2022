@@ -1,0 +1,20 @@
+List of factors:
+1. Ph Value
+2. Hardness
+3. Solids
+4. Chloramines
+5. Sulfate
+6. Conductivity
+7. Organic_carbon
+8. Trihalomethanes
+9. Turbidity
+10. Potability
+Data strucures:
+list of dictionaries
+each dictionary representes each equipment items water output.
+each dictionary is going to have all the factors.
+1. get data
+2. parse csv file
+3. get target value function
+Processing:
+
