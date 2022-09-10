@@ -31,6 +31,6 @@ def parse_lake_data():
                 "state" : row[2]
             }
             i+=1
-    print (list_info)
+
 if __name__ == "__main__":
     parse_lake_data()
