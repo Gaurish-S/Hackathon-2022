@@ -10,13 +10,13 @@ def is_float(element) -> bool:
 
 def getDifference():
     waste_info = parsecsv.waste
-    target_info = parsecsv.list_info
+    target_info = parsecsv.list_info.copy()
 
     for target in target_info:
         for key in target:
             if is_float(target[key]) & (key in waste_info):
                 difference = key + "Diff"
-                parsecsv.list_info[difference] = 1# float(waste_info[key]) # - float(target_info[key]))
+                target[difference] = float(waste_info[key]) - float(target[key])
 
 def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
