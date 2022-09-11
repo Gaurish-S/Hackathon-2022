@@ -1,16 +1,22 @@
-from curses.has_key import has_key
 import parsecsv
 import statistics
 
+def is_float(element) -> bool:
+    try:
+        float(element)
+        return True
+    except ValueError:
+        return False
+
 def getDifference():
-    waste_info = parsecsv.waste()
-    target_info = parsecsv.list_info()
+    waste_info = parsecsv.waste
+    target_info = parsecsv.list_info
 
     for target in target_info:
         for key in target:
-            if target[key].isNumeric() & waste_info.has_key(key):
+            if is_float(target[key]) & (key in waste_info):
                 difference = key + "Diff"
-                target_info[difference] = abs(waste_info[key] - target_info[key])
+                parsecsv.list_info[difference] = 1# float(waste_info[key]) # - float(target_info[key]))
 
 def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
@@ -26,7 +32,7 @@ def appendSalinity():
                 return -1
 
 def targetsMean():
-    target_info = parsecsv.list_info()
+    target_info = parsecsv.list_info
     
     # intermediate dictionary of list of numeric factor values
     calcDict = {}
@@ -47,8 +53,8 @@ def targetsMean():
 # Z = (X - µ)/σ or (x - mean) / stdev
 # standard deviations away from the mean = mean +/- 
 def GetzScores():
-    waste_info = parsecsv.waste()
-    target_info = parsecsv.list_info()
+    waste_info = parsecsv.waste
+    target_info = parsecsv.list_info
 
     meanDict = targetsMean()
 
@@ -59,7 +65,9 @@ def GetzScores():
                 zScoresDict[factor + " stdev"] = (waste_info[factor] - meanDict[factor + "Mean"])/statistics.stdev(target_info)
 
     return zScoresDict
+    
 
-    
-    
+parsecsv.parse_lake_data()
+getDifference()
+print(parsecsv.list_info)
 
