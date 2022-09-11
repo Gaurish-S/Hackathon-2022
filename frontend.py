@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from parsecsv import set_waste, show_waste, parse_lake_data
 from analysis import getDifference, sortList
 from convert import dictionary_to_list
+import parsecsv
 
 def make_input_window():
     input_size = (40, 1)
@@ -82,19 +83,15 @@ data_column = [
 
 parse_lake_data()
 dict_list = getDifference()
-print(dict_list)
-
 
 sorted_list = dictionary_to_list(dict_list)
-for item in sorted_list:
-    print(item)
 # Get data from backend, update table
 # TODO: automate table generation based on given data (table array)
 def create_table():
     table_layout = [
         [
             sg.Table(
-                headings=['River name:', 
+                headings=['River location:', 
                 'Temperature', 
                 'pH Level', 
                 'Dissolved Oxygen:', 
@@ -104,7 +101,11 @@ def create_table():
                 'Fecal Coliform'],
                 values=sorted_list,
                 justification='center',
-                col_widths=[25, 25, 25, 25, 25, 25, 25, 25], auto_size_columns=False,
+                col_widths=[25, 25, 25, 25, 25, 25, 25, 25], 
+                auto_size_columns=False,
+                key='table',
+                display_row_numbers=True,
+                row_height=75,
             )
         ]
     ]
@@ -121,19 +122,30 @@ while True:
         break
     elif event == "Show Input Window":
         input_window_function()
+        sorted_list = dictionary_to_list(getDifference())
     elif event == "Sort by Average Temperature":
-        print("change to temp")
+        print('sort by temperature')
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'tempDiff')))
+        print(sortList(getDifference(), 'temp')[0:50])
     elif event == "Sort by Average pH":
-        print("change to pH")
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'pHDiff')))
+        print('sort by pH')
     elif event == "Sort by Average Value of Dissolved Oxygen":
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'DODiff')))
         print("change to dissolved oxygen")
     elif event == "Sort by Average Conductivity Level":
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'conductivityDiff')))
         print("change to conductivity")
     elif event == "Sort by Average Biochemical Oxygen Demand":
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'BODDiff')))
         print("change to biochemical")
     elif event == "Sort by Average Nitrate-n and Nitrite-n Values":
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'nitrate_n_nitriteDiff')))
         print("change to nitrate-n")
     elif event == "Sort by Average Fecal Coliform":
+        data_window['table'].update(dictionary_to_list(sortList(getDifference(), 'fecal_coliformDiff')))
         print("change to coliform")
+    print(parsecsv.waste)
+
 
 data_window.close()
