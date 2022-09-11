@@ -58,5 +58,8 @@ def GetzScores():
             if waste_info[factor].isNumeric() & waste_info.has_key(factor):
                 zScoresDict[factor + " stdev"] = (waste_info[factor] - meanDict[factor + "Mean"])/statistics.stdev(target_info)
 
+    return zScoresDict
+
+    
     
 
