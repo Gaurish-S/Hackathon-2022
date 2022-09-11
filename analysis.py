@@ -1,5 +1,6 @@
 import parsecsv
 import statistics
+import copy
 
 def is_float(element) -> bool:
     try:
@@ -10,13 +11,16 @@ def is_float(element) -> bool:
 
 def getDifference():
     waste_info = parsecsv.waste
-    target_info = parsecsv.list_info
-
-    for target in target_info:
+    new_list_info = []
+    for target in parsecsv.list_info:
+        new_target = copy.deepcopy(target)
         for key in target:
             if is_float(target[key]) & (key in waste_info):
                 difference = key + "Diff"
-                parsecsv.list_info[difference] = 1# float(waste_info[key]) # - float(target_info[key]))
+                new_target[difference] = float(waste_info[key]) - float(target[key])
+        new_list_info.append(new_target)
+    
+    return new_list_info
 
 def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
@@ -68,6 +72,5 @@ def GetzScores():
     
 
 parsecsv.parse_lake_data()
-getDifference()
-print(parsecsv.list_info)
+print(getDifference())
 
