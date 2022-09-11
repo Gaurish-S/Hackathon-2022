@@ -33,7 +33,7 @@ def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
 
     for entry in joined_list:
-        if entry.has_key("conductivity"):
+        if ("conductivity" in entry):
             # differing constants are required for salinity calculations
             if entry["conductivity"] > 0.1 & entry["conductivity"] < 5:
                 entry["salinity"] = 640 * entry["conductivity"]
@@ -76,5 +76,4 @@ def GetzScores():
                 zScoresDict[factor + " stdev"] = (waste_info[factor] - meanDict[factor + "Mean"])/statistics.stdev(target_info)
 
     return zScoresDict
-
 
