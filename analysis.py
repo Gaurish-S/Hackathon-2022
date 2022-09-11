@@ -30,7 +30,7 @@ def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
 
     for entry in joined_list:
-        if entry.has_key("conductivity"):
+        if ("conductivity" in entry):
             # differing constants are required for salinity calculations
             if entry["conductivity"] > 0.1 & entry["conductivity"] < 5:
                 entry["salinity"] = 640 * entry["conductivity"]
@@ -76,5 +76,6 @@ def GetzScores():
     
 
 parsecsv.parse_lake_data()
+
 print(getDifference())
 
