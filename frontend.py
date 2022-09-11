@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
-from parsecsv import set_waste, show_waste
+from parsecsv import set_waste, show_waste, parse_lake_data
+from analysis import getDifference, sortList
+from convert import dictionary_to_list
 
 def make_input_window():
     input_size = (40, 1)
@@ -62,7 +64,7 @@ def input_window_function():
 input_window_function()
 
 # Data Window
-button_size = (30, 1)
+button_size = (25, 1)
 
 data_column = [
     [sg.Text("River data informations", font=("Helvetica", 30))],
@@ -78,6 +80,14 @@ data_column = [
 
 
 
+parse_lake_data()
+dict_list = getDifference()
+print(dict_list)
+
+
+sorted_list = dictionary_to_list(dict_list)
+for item in sorted_list:
+    print(item)
 # Get data from backend, update table
 # TODO: automate table generation based on given data (table array)
 def create_table():
@@ -92,7 +102,7 @@ def create_table():
                 'Biochemical Oxygen Demand', 
                 'Value of Nitrate-n and Nitrite-n', 
                 'Fecal Coliform'],
-                values=[['1', '2', '3', '4', '5', '6', '7', '8']],
+                values=sorted_list,
                 justification='center',
                 col_widths=[25, 25, 25, 25, 25, 25, 25, 25], auto_size_columns=False,
             )
