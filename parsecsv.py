@@ -5,7 +5,7 @@ waste = {
     "temp": 0.0,
     "DO": 0.0,
     "pH": 0.0,   
-    "conductivity": 0.0,
+    "conductivity": 0.1,
     "BOD": 0.0,
     "nitrate_n_nitrite": 0.0,
     "fecal_coliform": 0.0
@@ -41,7 +41,6 @@ def parse_lake_data():
             })
         
         del list_info[0]
-        print(list_info)
 
 if __name__ == "__main__":
     parse_lake_data()
