@@ -17,10 +17,14 @@ def getDifference():
         for key in target:
             if is_float(target[key]) & (key in waste_info):
                 difference = key + "Diff"
-                new_target[difference] = float(waste_info[key]) - float(target[key])
+                new_target[difference] = abs(float(waste_info[key]) - float(target[key]))
+            elif (target[key] == "NA") & (key in waste_info):
+                difference = key + "Diff"
+                new_target[difference] = float("inf")
         new_list_info.append(new_target)
     
     return new_list_info
+
 
 def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
