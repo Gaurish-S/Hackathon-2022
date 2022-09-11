@@ -25,6 +25,9 @@ def getDifference():
     
     return new_list_info
 
+def sortList(list, attribute):
+    newlist = sorted(list, key=lambda d: d[attribute])
+    return newlist
 
 def appendSalinity():
     joined_list = parsecsv.list_info.append(parsecsv.waste)
@@ -73,8 +76,5 @@ def GetzScores():
                 zScoresDict[factor + " stdev"] = (waste_info[factor] - meanDict[factor + "Mean"])/statistics.stdev(target_info)
 
     return zScoresDict
-    
 
-parsecsv.parse_lake_data()
-print(getDifference())
 
